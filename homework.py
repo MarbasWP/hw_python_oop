@@ -1,6 +1,5 @@
 class InfoMessage:
     """Информационное сообщение о тренировке."""
-
     def __init__(self,
                  training_type: str,
                  duration: float,
@@ -23,9 +22,9 @@ class InfoMessage:
 
 
 class Training:
+    """Базовый класс тренировки."""
     M_IN_KM: int = 1000
     LEN_STEP: float = 0.65
-    """Базовый класс тренировки."""
 
     def __init__(self,
                  action: int,
@@ -103,7 +102,6 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_distance(self) -> float:
-        """Получить дистанцию в км."""
         return self.action * self.LEN_STEP / Training.M_IN_KM
 
     def get_mean_speed(self):
