@@ -81,8 +81,9 @@ class SportsWalking(Training):
         self.height = height
 
     def get_spent_calories(self) -> float:
-        return ((self.COEF_3 * self.weight + (self.get_mean_speed() * 2 // self.height)
-                 * self.COEF_4 * self.weight) * self.duration * Running.HOUR_IN_MIN)
+        return ((self.COEF_3 * self.weight + (self.get_mean_speed() *
+                2 // self.height) * self.COEF_4 * self.weight) *
+                self.duration * Running.HOUR_IN_MIN)
 
 
 class Swimming(Training):
@@ -105,7 +106,8 @@ class Swimming(Training):
         return self.action * self.LEN_STEP / Training.M_IN_KM
 
     def get_mean_speed(self):
-        return self.length_pool * self.count_pool / self.M_IN_KM / self.duration
+        return (self.length_pool * self.count_pool /
+                self.M_IN_KM / self.duration)
 
     def get_spent_calories(self):
         return (self.get_mean_speed() + self.COEF_5) * 2 * self.weight
@@ -113,7 +115,9 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> None:
     """Прочитать данные полученные от датчиков."""
-    read: dict[str, Training] = dict(RUN=Running, WLK=SportsWalking, SWM=Swimming)
+    read: dict[str, Training] ={'RUN' : Running,
+                                'WLK':SportsWalking,
+                                'SWM':Swimming}
     if read.get(workout_type) is None:
         return None
     reddit = read.get(workout_type)(*data)
