@@ -131,7 +131,9 @@ def read_package(workout_type: str, date: Collection) -> Training:
     elif SPORTS.get(workout_type)[1] != len(date):
         raise ValueError(ERROR_PARAMETERS.format(workout_type,
                                                  SPORTS.get(workout_type)[1],
-                                                 len(date)))
+                                                 len(date)
+                                                 )
+                         )
     return SPORTS.get(workout_type)[0](*date)
 
 
