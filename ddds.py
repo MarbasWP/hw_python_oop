@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+import dataclasses
+from dataclasses import dataclass, asdict, field
 from typing import Collection
 
 
@@ -140,6 +141,8 @@ if __name__ == '__main__':
         ('SWM', [720, 1, 80, 25, 40]),
         ('RUN', [15000, 1, 75]),
         ('WLK', [9000, 1, 75, 180]),
+        ('WRK', [9000, 1, 75, 180]),  # передаем невалидный код тренировки
+        ('WLK', [1, 75, 180])  # передаем неправильное количество параметров
     ]
     for workout_type, data in packages:
         try:
