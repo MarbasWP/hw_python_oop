@@ -10,10 +10,10 @@ class InfoMessage:
     distance: float
     speed: float
     calories: float
-    INFO = ('Тип тренировки: {training_type}; ' 
-            'Длительность: {duration:.3f} ч.; ' 
-            'Дистанция: {distance:.3f} км; ' 
-            'Ср. скорость: {speed:.3f} км/ч; ' 
+    INFO = ('Тип тренировки: {training_type}; '
+            'Длительность: {duration:.3f} ч.; '
+            'Дистанция: {distance:.3f} км; '
+            'Ср. скорость: {speed:.3f} км/ч; '
             'Потрачено ккал: {calories:.3f}.'
             )
 
@@ -61,14 +61,17 @@ class Running(Training):
     SPEED_SHIFT = 20
 
     def get_spent_calories(self):
-        return ((self.SPEED_MULTIPLIER_1
-                 * self.get_mean_speed()
-                 - self.SPEED_SHIFT)
-                * self.weight
-                / self.M_IN_KM
-                * self.duration
-                * self.HOUR_IN_MIN
-                )
+        return (
+            (
+                self.SPEED_MULTIPLIER_1
+                * self.get_mean_speed()
+                - self.SPEED_SHIFT
+            )
+            * self.weight
+            / self.M_IN_KM
+            * self.duration
+            * self.HOUR_IN_MIN
+        )
 
 
 @dataclass()
@@ -84,12 +87,11 @@ class SportsWalking(Training):
             (
                 self.WEIGHT_MULTIPLIER_1
                 * self.weight
-                +
-                (
+                + (
                         self.get_mean_speed()
                         ** self.COEFFICIENT_DEGREE
                         // self.height
-                )
+                  )
                 * self.WEIGHT_MULTIPLIER_2
                 * self.weight
             )
