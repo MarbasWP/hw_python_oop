@@ -18,13 +18,7 @@ class InfoMessage:
             )
 
     def get_message(self) -> str:
-        print(*asdict(self))
-        return self.INFO.format(training_type=asdict(self),
-                                duration=self.duration,
-                                distance=self.distance,
-                                speed=self.speed,
-                                calories=self.calories
-                                )
+        return self.INFO.format(**asdict(self))
 
 
 @dataclass()
@@ -68,15 +62,15 @@ class Running(Training):
 
     def get_spent_calories(self):
         return (
-                (
-                        self.SPEED_MULTIPLIER_1
-                        * self.get_mean_speed()
-                        - self.SPEED_SHIFT
-                )
-                * self.weight
-                / self.M_IN_KM
-                * self.duration
-                * self.HOUR_IN_MIN
+            (
+                self.SPEED_MULTIPLIER_1
+                * self.get_mean_speed()
+                - self.SPEED_SHIFT
+            )
+            * self.weight
+            / self.M_IN_KM
+            * self.duration
+            * self.HOUR_IN_MIN
         )
 
 
@@ -90,20 +84,20 @@ class SportsWalking(Training):
 
     def get_spent_calories(self) -> float:
         return (
+            (
+                self.WEIGHT_MULTIPLIER_1
+                * self.weight
+                +
                 (
-                        self.WEIGHT_MULTIPLIER_1
-                        * self.weight
-                        +
-                        (
-                                self.get_mean_speed()
-                                ** self.COEFFICIENT_DEGREE
-                                // self.height
-                        )
-                        * self.WEIGHT_MULTIPLIER_2
-                        * self.weight
+                        self.get_mean_speed()
+                        ** self.COEFFICIENT_DEGREE
+                        // self.height
                 )
-                * self.duration
-                * self.HOUR_IN_MIN
+                * self.WEIGHT_MULTIPLIER_2
+                * self.weight
+            )
+            * self.duration
+            * self.HOUR_IN_MIN
         )
 
 
