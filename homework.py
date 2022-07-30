@@ -61,17 +61,14 @@ class Running(Training):
     SPEED_SHIFT = 20
 
     def get_spent_calories(self):
-        return (
-            (
-                self.SPEED_MULTIPLIER_1
-                * self.get_mean_speed()
-                - self.SPEED_SHIFT
-            )
-            * self.weight
-            / self.M_IN_KM
-            * self.duration
-            * self.HOUR_IN_MIN
-        )
+        return ((self.SPEED_MULTIPLIER_1
+                 * self.get_mean_speed()
+                 - self.SPEED_SHIFT)
+                * self.weight
+                / self.M_IN_KM
+                * self.duration
+                * self.HOUR_IN_MIN
+                )
 
 
 @dataclass()
@@ -129,7 +126,6 @@ SPORTS = {
     'WLK': (SportsWalking, len(fields(SportsWalking))),
     'SWM': (Swimming, len(fields(Swimming)))
 }
-
 ERROR_SPORT = '{} нет в базе данных.'
 ERROR_PARAMETERS = 'Для {} необходимо {} параметра, а вы ввели {}.'
 
