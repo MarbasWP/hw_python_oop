@@ -141,7 +141,7 @@ def read_package(workout: str, date: Collection) -> Training:
                          )
     if parameters != len(date):
         raise ValueError(
-            ERROR_PARAMETERS.format
+                    ERROR_PARAMETERS.format
                         (
                             workout,
                             parameters,
