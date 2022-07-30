@@ -88,10 +88,10 @@ class SportsWalking(Training):
                 self.WEIGHT_MULTIPLIER_1
                 * self.weight
                 + (
-                        self.get_mean_speed()
-                        ** self.COEFFICIENT_DEGREE
-                        // self.height
-                    )
+                    self.get_mean_speed()
+                    ** self.COEFFICIENT_DEGREE
+                    // self.height
+                )
                 * self.WEIGHT_MULTIPLIER_2
                 * self.weight
             )
